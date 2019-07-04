@@ -20,7 +20,7 @@ $('tr:odd')
 */
 
 $('img').each(() => {
-  console.log(this.attr('alt'));
+  console.log($(this).attr('alt'));
 });
 
 
