@@ -23,4 +23,4 @@ $('#tabNavigation li').click(function() {
 });
 
 // 5
-modules.first().show();
+modules.first().show(); 
