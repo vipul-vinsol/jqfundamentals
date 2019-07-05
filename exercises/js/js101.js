@@ -9,15 +9,15 @@
  *  defined within the same scope.
  **/
 
-$(document).ready(function() {
+ $(document).ready(function() {
 
   var sayItOutside = (function(){
 
     var myVar = 'hello world',
 
-        sayIt = function() {
-          console.log(myVar);
-        };
+    sayIt = function() {
+      console.log(myVar);
+    };
 
     myVar = 'a new value';
 
@@ -37,7 +37,7 @@ $(document).ready(function() {
  *  of objects.
  **/
 
-$(document).ready(function() {
+ $(document).ready(function() {
 
   $('#myDiv').click(function(e) {
     // console.log(e.target);
@@ -56,7 +56,7 @@ $(document).ready(function() {
  *  Functions can create other functions.
  **/
 
-$(document).ready(function() {
+ $(document).ready(function() {
 
   var makeRepeater = function(fn, repeat) {
     return function() {
@@ -76,7 +76,7 @@ $(document).ready(function() {
  *  arguments passed to the function.
  **/
 
-$(document).ready(function() {
+ $(document).ready(function() {
 
   $('#myDiv').one('click', function() {
     // console.log(arguments);
@@ -95,7 +95,7 @@ $(document).ready(function() {
  *  Objects can have properties and methods.
  **/
 
-$(document).ready(function() {
+ $(document).ready(function() {
 
   var myObj = {
     paul : 'Google',
@@ -114,7 +114,7 @@ $(document).ready(function() {
  *  the object that owns the method by default.
  **/
 
-$(document).ready(function() {
+ $(document).ready(function() {
 
   var myObj = {
     paul : 'Google',
@@ -129,7 +129,7 @@ $(document).ready(function() {
         ', you work for',
         company,
         '.'
-      );
+        );
     }
   };
 
@@ -142,24 +142,24 @@ $(document).ready(function() {
  *  combined with the goodness of objects.
  **/
 
-$(document).ready(function() {
+ $(document).ready(function() {
 
   var myModule = (function(){
 
     // set up all the variables you'll need for
     // the module's functionality
     var privateVar = 'secret',
-        publicVar = 'not secret',
-        tellSecret = function() {
-          console.log(privateVar);
-        },
-        setSecret = function(str) {
-          if (str.length < 6) {
-            console.log('not secret enough!');
-            return;
-          }
-          privateVar = str;
-        };
+    publicVar = 'not secret',
+    tellSecret = function() {
+      console.log(privateVar);
+    },
+    setSecret = function(str) {
+      if (str.length < 6) {
+        console.log('not secret enough!');
+        return;
+      }
+      privateVar = str;
+    };
 
     // decide what to expose as a public API
     // to the module.
@@ -183,18 +183,18 @@ $(document).ready(function() {
  *  to be shared across objects.
  */
 
-$(document).ready(function() {
+ $(document).ready(function() {
 
   var Person = function(first, last) {
     /**
      *  Setting instance properties
      **/
-    this.firstName = first;
-    this.lastName = last;
-    return this;
-  };
+     this.firstName = first;
+     this.lastName = last;
+     return this;
+   };
 
-  Person.prototype = {
+   Person.prototype = {
     sayFirstName : function() {
       console.log(this.firstName);
     }
@@ -203,8 +203,8 @@ $(document).ready(function() {
   /**
    *  Creating "instances" of Person
    **/
-  var adam = new Person('adam', 'sontag'),
-      rebecca = new Person('rebecca', 'murphey');
+   var adam = new Person('adam', 'sontag'),
+   rebecca = new Person('rebecca', 'murphey');
 
   // adam.sayFirstName();
   // rebecca.sayFirstName();
@@ -215,7 +215,7 @@ $(document).ready(function() {
  *  Methods can be changed on individual instances
  *  without affecting other instances.
  **/
-$(document).ready(function() {
+ $(document).ready(function() {
 
   var Person = function(first, last) {
     this.firstName = first;
@@ -230,7 +230,7 @@ $(document).ready(function() {
   };
 
   var adam = new Person('adam', 'sontag'),
-      rebecca = new Person('rebecca', 'murphey');
+  rebecca = new Person('rebecca', 'murphey');
 
   /**
    *  Changing the definition of an instance method
@@ -247,7 +247,7 @@ $(document).ready(function() {
  *  ... Unless you want to affect other instances! In
  *  which case, you should modify the prototype instead.
  **/
-$(document).ready(function() {
+ $(document).ready(function() {
 
   var Person = function(first, last) {
     this.firstName = first;
@@ -262,12 +262,12 @@ $(document).ready(function() {
   };
 
   var adam = new Person('adam', 'sontag'),
-      rebecca = new Person('rebecca', 'murphey');
+  rebecca = new Person('rebecca', 'murphey');
 
   /**
    *  Changing the definition of a protype method
    **/
-  Person.prototype.sayFirstName = function() {
+   Person.prototype.sayFirstName = function() {
     console.log('i have no name');
   };
 
@@ -281,7 +281,7 @@ $(document).ready(function() {
  *  where it is not available.
  **/
 
-$(document).ready(function() {
+ $(document).ready(function() {
 
   if (typeof Object.create !== 'function') {
     Object.create = function (o) {
@@ -324,21 +324,21 @@ $(document).ready(function() {
  *  we use .call() or .apply().
  **/
 
-$(document).ready(function() {
+ $(document).ready(function() {
 
   var p = {
-        firstName : 'paul',
-        lastName : 'irish'
-      },
+    firstName : 'paul',
+    lastName : 'irish'
+  },
 
-      a = {
-        firstName : 'alex',
-        lastName : 'sexton'
-      },
+  a = {
+    firstName : 'alex',
+    lastName : 'sexton'
+  },
 
-      sayHi = function(greeting, question) {
-        console.log(greeting, this.firstName, this.lastName, question);
-      };
+  sayHi = function(greeting, question) {
+    console.log(greeting, this.firstName, this.lastName, question);
+  };
 
   /**
    *  .apply takes a scope object and an array of arguments
@@ -375,7 +375,7 @@ $(document).ready(function() {
  *  to the element to which the handler was bound.
  **/
 
-$(document).ready(function() {
+ $(document).ready(function() {
 
   var myObj = {
     thingToSay : 'it worked!',

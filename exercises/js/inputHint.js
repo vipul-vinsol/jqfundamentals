@@ -1,25 +1,44 @@
-let searchInput = $("input[name='q']");
-let labelValue = $('#search label').text();
+class InputHints {
+  constructor() {
+    this.searchInput = $("input[name='q']");
+    this.labelValue = $('#search label').text();
+    this.focusHandler = this.focusHandler.bind(this);
+    this.blurHandler = this.blurHandler.bind(this);
+  }
 
-// 1
-searchInput
-.val(labelValue);
+  init() {
+    this.setup();
+    this.bindEvents();
+  }
 
-// 2 
-searchInput.addClass('hint');
+  setup() {
+    console.log("this should come up");
+    // 1
+    this.searchInput.val(this.labelValue);
 
-// 3
-$('#search label').remove();
+    // 2 
+    this.searchInput.addClass('hint');
+    // 3
+    $('#search label').remove();    
+  }
 
-// 4
-searchInput.focus(function() {
-  $(this)
-  .removeClass('hint')
-  .val('');
-});
+  bindEvents() {
+    this.searchInput.focus(this.focusHandler);
+    this.searchInput.blur(this.blurHandler);
+  }
 
-searchInput.blur(function() {
-  $(this)
-  .addClass('hint')
-  .val(labelValue);
-});
+  focusHandler(e) {
+    $(e.currentTarget)
+    .removeClass('hint')
+    .val('');
+  }
+
+  blurHandler(e) {
+    $(e.currentTarget)
+    .addClass('hint')
+    .val(this.labelValue);  
+  }
+}
+
+let inputHint = new InputHints();
+inputHint.init();
