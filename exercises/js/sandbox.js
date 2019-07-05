@@ -56,27 +56,28 @@ $('#slideshow > li:first-child')
 */
 
 for(let i = 0; i < 5; i++) {
-  $('#myList').append(`<li>List item ${ 8 + i }</li>`);
+  $('#myList').append($('<li>').text(i + 8));
 }
-
 
 $('#myList > li:odd').remove();
 
 
 $('div.module')
   .last()
-  .append(`<h2>Heading added by jquery</h2>
-	<p>Paragrapgh added by jquery</p>`);
-
-
+  .append($('<h2>').text('Heading added by jquery'))
+	.append($('<p>').text('Paragrapgh added by jquery'));
 
 
 $('select[name="day"]')
-  .append(`<option value="wednesday">Wednesday</option>`);
-
-
+  .append($('<option>', {value: 'wednesday'}).text('Wednesday'));
 
 
 $('div.module')
-  .last()
-  .after('<div class="module"><img src="images/bread.jpg" alt="bread" /></div>'); 
+  .last() 
+  .after($('<div />', 
+    {'class': 'module'})
+    .append($('<img />', {
+      src: 'images/bread.jpg',
+      alt: 'bread'
+    }))
+  );
