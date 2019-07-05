@@ -1,26 +1,42 @@
-let modules = $('div.module');
+class TabNavigation {
+  constructor() {
+    this.modules = $('div.module');
+    this.handler = this.handler.bind(this);
+  }
 
-// 1 
-modules.hide();
+  init() {
+    this.setup();
+    this.bindEvents();
+    this.modules.first().show();
+  }
 
-// 2
-modules
-  .first()
-  .before('<ul id="tabNavigation"></ul>');
+  setup() {
+    this.modules.hide();
 
-// 3
-modules.each(function() {
-  let data = $(this).find('h2').text();
-  $('#tabNavigation').append(`<li>${data}</li>`);
-});
+    this.modules
+      .first()
+      .before('<ul id="tabNavigation"></ul>');
 
-// 4
-$('#tabNavigation li').click(function() {
-  let id = $(this).addClass('current').text().toLowerCase();
-  $(this).siblings().removeClass('current');
-  modules.hide();
-  $(`#${id}`).show();
-});
+    this.modules.each((index, ele) => {
+      let data = $(ele).find('h2').text();
+      $('#tabNavigation').append(`<li>${data}</li>`);
+    });
 
-// 5
-modules.first().show(); 
+    this.listItems = $('#tabNavigation li');
+  }
+
+  bindEvents() {
+    this.listItems.click(this.handler);
+  }
+
+  handler(e) {
+    let item = e.currentTarget;
+    let eleIdAttr = $(item).addClass('current').text().toLowerCase();
+    $(item).siblings().removeClass('current');
+    this.modules.hide();
+    $(`#${eleIdAttr}`).show();
+  }
+}
+
+let tabNav = new TabNavigation();
+tabNav.init();
