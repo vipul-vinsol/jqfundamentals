@@ -1,28 +1,47 @@
-// 1
-$('body').prepend($('#slideshow'));
+class SlideShow {
+  constructor() {
+    this.items = $('#slideshow li');
+    this.itemCount = this.items.length;
+  }
+
+  init() {
+    this.setup();
+    this.changeImagesEveryThreeSeconds();
+  }
+
+  setup() {
+    // Move to Top
+    $('body').prepend($('#slideshow'));
+
+    // Hide All except first
+    $('#slideshow li:gt(0)').hide();
+    
+    // Create Stats Section
+    $('#slideshow').after(`
+      <h1>Slide Show Details</h1>
+      <h2> Total Images :- ${this.itemCount} </h2>
+      <h2> Current Image :- <span id='currentImageNumber'>1</span> </h2>
+    `);
+  }
+
+  changeImagesEveryThreeSeconds() {
+    let i = 0;
+    setInterval(() => {
+      this.items.eq(i).fadeOut(1000, () => {
+        // Increment the counter and roll around
+        ++i;
+        if(i === this.itemCount) i = 0;
+
+        //  Update the stats section
+        $('#currentImageNumber').text(i+1);
+        
+        // FadeIn the next Image
+        this.items.eq(i).fadeIn(1000);
+      })
+    }, 3000);
+  }
+}
 
 
-// Slideshow
-$('#slideshow li:gt(0)').hide();
-
-let i = 0;
-let items = $('#slideshow li')
-
-setInterval(function() {
-
-  items.eq(i)
-  .fadeOut(1000, function() {
-    ++i;
-    if(i === items.length) i = 0;
-
-    $('#currentImage').text(i+1);
-    items.eq(i)
-    .fadeIn(1000);
-  })
-}, 3000);
-
-$('#slideshow').after(`
-<h1>Slide Show Details</h1>
-<h2> Total Images :- ${items.length} </h2>
-<h2> Current Image :- <span id='currentImage'>1</span> </h2>
-`);
+let slideshow = new SlideShow();
+slideshow.init();

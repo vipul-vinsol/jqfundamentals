@@ -12,7 +12,6 @@ class InputHints {
   }
 
   setup() {
-    console.log("this should come up");
     // 1
     this.searchInput.val(this.labelValue);
 
