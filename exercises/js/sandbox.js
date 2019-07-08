@@ -64,20 +64,16 @@ $('#myList > li:odd').remove();
 
 $('div.module')
   .last()
-  .append($('<h2>').text('Heading added by jquery'))
-	.append($('<p>').text('Paragrapgh added by jquery'));
+  .append($('<h2 />').text('Heading added by jquery'))
+  .append($('<p />').text('Paragrapgh added by jquery'));
 
 
 $('select[name="day"]')
-  .append($('<option>', {value: 'wednesday'}).text('Wednesday'));
+  .append($('<option />', { value: 'wednesday' }).text('Wednesday'));
 
 
 $('div.module')
   .last() 
-  .after($('<div />', 
-    {'class': 'module'})
-    .append($('<img />', {
-      src: 'images/bread.jpg',
-      alt: 'bread'
-    }))
-  );
+  .after($('<div />', { 'class': 'module' })
+  .append($('<img />', { src: 'images/bread.jpg', alt: 'bread' }))
+);
