@@ -28,7 +28,7 @@ $('img').each(() => {
 
 $('input.input_text')
   .parent()
-  .addClass('class');
+  .addClass('new-class');
 
 
 
