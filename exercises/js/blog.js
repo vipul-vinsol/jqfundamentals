@@ -1,6 +1,6 @@
 class Blog {
   constructor() {
-    this.blogHeadings = $('#blog h3');
+    this.blog = $('#blog');
     this.handler = this.handler.bind();
   }
 
@@ -9,12 +9,12 @@ class Blog {
   }
 
   bindEvents() {
-    this.blogHeadings.click(this.handler);    
+    this.blog.find('h3').click(this.handler);    
   }
 
   handler(e) {
     e.preventDefault();
-    $('#blog').find('.reading').removeClass('reading').slideUp();
+    this.blog.find('.reading').removeClass('reading').slideUp();
     $(e.currentTarget).siblings('p').addClass('reading').slideDown();   
   }
 }
