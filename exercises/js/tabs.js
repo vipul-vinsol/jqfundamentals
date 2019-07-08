@@ -15,14 +15,14 @@ class TabNavigation {
 
     this.modules
       .first()
-      .before('<ul id="tabNavigation"></ul>');
+      .before( $('<ul />', { id: 'tabNavigation' }) );
 
     this.modules.each((index, ele) => {
       let data = $(ele).find('h2').text();
-      $('#tabNavigation').append(`<li>${data}</li>`);
+      this.module.find('#tabNavigation').append( $('<li />').text(data) );
     });
 
-    this.listItems = $('#tabNavigation li');
+    this.listItems = this.module.find('#tabNavigation li');
   }
 
   bindEvents() {
@@ -34,7 +34,7 @@ class TabNavigation {
     let eleIdAttr = $(item).addClass('current').text().toLowerCase();
     $(item).siblings().removeClass('current');
     this.modules.hide();
-    $(`#${eleIdAttr}`).show();
+    this.module.find(`#${eleIdAttr}`).show();
   }
 }
 
