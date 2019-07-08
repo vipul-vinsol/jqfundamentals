@@ -4,7 +4,11 @@ class Navigation {
     this.mouseOn = this.mouseOn.bind();
     this.mouseLeave = this.mouseLeave.bind();
   }
-
+  
+  setElementDisplay(e, displaType) {
+    $(e.currentTarget).find('ul').css('display', displayType);
+  }
+  
   init() {
     this.bindEvents();
   }
@@ -14,12 +18,14 @@ class Navigation {
   }
 
   mouseOn(e) {
-    $(e.currentTarget).find('ul').css('display', 'block');
+    setElementDisplay(e, 'block');
   }
 
   mouseLeave(e) {
-    $(e.currentTarget).find('ul').css('display', 'none'); 
+    setElementDisplay(e, 'none'); 
   }
+  
+
 }
 
 let navigation = new Navigation();
