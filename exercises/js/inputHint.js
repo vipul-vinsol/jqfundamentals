@@ -1,4 +1,4 @@
-class InputHints {
+class InputHint {
   constructor() {
     this.searchInput = $("input[name='q']");
     this.searchLabel = $('#search label'); 
@@ -40,5 +40,5 @@ class InputHints {
   }
 }
 
-let inputHint = new InputHints();
+let inputHint = new InputHint();
 inputHint.init();
