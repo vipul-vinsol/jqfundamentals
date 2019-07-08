@@ -1,7 +1,8 @@
 class InputHints {
   constructor() {
     this.searchInput = $("input[name='q']");
-    this.labelValue = $('#search label').text();
+    this.searchLabel = $('#search label'); 
+    this.labelValue = this.searchLabel.text();
     this.focusHandler = this.focusHandler.bind(this);
     this.blurHandler = this.blurHandler.bind(this);
   }
@@ -18,7 +19,7 @@ class InputHints {
     // 2 
     this.searchInput.addClass('hint');
     // 3
-    $('#search label').remove();    
+    this.searchLabel.remove();    
   }
 
   bindEvents() {
@@ -28,14 +29,14 @@ class InputHints {
 
   focusHandler(e) {
     $(e.currentTarget)
-    .removeClass('hint')
-    .val('');
+      .removeClass('hint')
+      .val('');
   }
 
   blurHandler(e) {
     $(e.currentTarget)
-    .addClass('hint')
-    .val(this.labelValue);  
+      .addClass('hint')
+      .val(this.labelValue);  
   }
 }
 
