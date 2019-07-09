@@ -75,5 +75,5 @@ $('select[name="day"]')
 $('div.module')
   .last() 
   .after($('<div />', { 'class': 'module' })
-  .append($('img').clone());
+  .append($('img')[0].clone());
 );
