@@ -1,8 +1,8 @@
 class DaySpecialController {
-  constructor() {
-    this.specialDiv = $('#specials');
-    this.selectElement = $("select[name='day']");
-    this.daySpecialData = undefined;
+  constructor(targetId) {
+    this.specialDiv = $(`#${targetId}`);
+    this.selectElement = this.specialDiv.find("select[name='day']");
+    this.daySpecialData = null;
     this.handler = this.handler.bind(this);
   }
 
@@ -13,13 +13,13 @@ class DaySpecialController {
 
   setup() {
     this.specialDiv
-      .append($('<div />', {
+      .append( $('<div />', {
         id: 'special-information-display'
-      })); 
+      }) ); 
   }
 
   bindEvents() {
-    this.selectElement.change(this.handler);
+    this.selectElement.change( this.handler );
   }
 
   handler(e) {
@@ -27,12 +27,12 @@ class DaySpecialController {
     // Check if data is cached 
     if(this.daySpecialData) {
       let html = this.daySpecialToHtml(day, this.daySpecialData);
-      $('#special-information-display').html(html);
+      this.specialDiv.find('#special-information-display').html(html);
     } else {
       $.getJSON("/data/specials.json", (data) => {
         this.daySpecialData = data;
         let html = this.daySpecialToHtml(day, data);
-        $('#special-information-display').html(html);
+        this.specialDiv.find('#special-information-display').html(html);
       });
     }
   }
@@ -40,13 +40,13 @@ class DaySpecialController {
   daySpecialToHtml(day, data) {
     if(day in data) {
       let info = data[day];
-      let html = $('<h3 />', {style: `color: ${info['color']}`})
-        .after($('<p />').text(info['text']))
-        .after($('<img />', {
+      let html = $( '<h3 />', { style: `color: ${ info['color'] }` } )
+        .after( $('<p />').text( info['text'] ) ) 
+        .after( $('<img />', {
           src: info['image'],
           alt: 'Day Special Image'
-        }))
-        .text(info['title']);
+        }) )
+        .text( info['title'] );
       return html;
     } else {
       return $('<strong />')
