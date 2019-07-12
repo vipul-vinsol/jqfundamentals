@@ -1,6 +1,6 @@
 class BlogLoader {
-  constructor() {
-    this.targetEle = $('#blog ul li h3');
+  constructor(container) {
+    this.targetEle = $(`#${container}`);
   }
 
   init() {
@@ -9,7 +9,7 @@ class BlogLoader {
   }
 
   generateDiv(index, ele) {      
-    let targetDiv = $('<div>').text('Show Complete Blog');
+    let targetDiv = $('<div />').text('Show Complete Blog');
     targetDiv.data('ref', $(ele));
     $(ele).prepend(targetDiv);
   }
@@ -19,17 +19,20 @@ class BlogLoader {
   }
 
   bindEvents() {
-    $('#blog ul li h3 div').click(this.hander);
+    this.targetEle.find('div').click(this.hander);
   }
 
   hander(e) {
     e.stopPropagation();
     let item = $(e.currentTarget);
-    let url = $(item).data('ref').find('a').attr('href');
-    url = url.split('#').join(' #');
+    let url = $(item)
+                .data('ref')
+                .find('a')
+                .attr('href');
+    url = url.replace('#', ' #');
     $(item).load(`data/${url}`);
   }
 }
 
-let blogLoader = new BlogLoader();
+let blogLoader = new BlogLoader('blog ul li h3');
 blogLoader.init();
