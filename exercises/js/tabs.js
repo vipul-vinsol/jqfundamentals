@@ -1,32 +1,29 @@
 class TabNavigation {
-  constructor() {
-    this.modules = $('div.module');
+  constructor(targetClass) {
+    this.modules = $(`div.${targetClass}`);
     this.handler = this.handler.bind(this);
   }
 
   init() {
     this.setup();
-    this.bindEvents();
     this.modules.first().show();
   }
 
   setup() {
     this.modules.hide();
 
-    this.modules
-      .first()
-      .before( $('<ul />', { id: 'tabNavigation' }) );
+    let navContainer = $('<ul />', { id: 'tabNavigation' });
 
     this.modules.each((index, ele) => {
       let data = $(ele).find('h2').text();
-      this.module.find('#tabNavigation').append( $('<li />').text(data) );
+      let navItem = $('<li />').text(data);
+      navItem.click(this.handler);
+      navContainer.append( navItem );
     });
 
-    this.listItems = this.module.find('#tabNavigation li');
-  }
-
-  bindEvents() {
-    this.listItems.click(this.handler);
+    this.modules
+      .first()
+      .before( navContainer );
   }
 
   handler(e) {
@@ -34,9 +31,9 @@ class TabNavigation {
     let eleIdAttr = $(item).addClass('current').text().toLowerCase();
     $(item).siblings().removeClass('current');
     this.modules.hide();
-    this.module.find(`#${eleIdAttr}`).show();
+    $(`#${eleIdAttr}`).show();
   }
 }
 
-let tabNav = new TabNavigation();
+let tabNav = new TabNavigation('module');
 tabNav.init();
