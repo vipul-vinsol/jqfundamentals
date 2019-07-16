@@ -1,6 +1,6 @@
 class BlogLoader {
   constructor(dataAttr) {
-    this.rootContainer = $(`div[data-container='${dataAttr}'`);
+    this.rootContainer = $(`div[data-container='${dataAttr}']`);
     this.targetHeadings = this.rootContainer.find('h3');
   }
 

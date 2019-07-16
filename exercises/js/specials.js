@@ -1,8 +1,7 @@
 class DaySpecialController {
-  constructor(targetId) {
-    this.specialDiv = $(`#${targetId}`);
+  constructor(dataAttr) {
+    this.specialDiv = $(`div[data-container='${dataAttr}']`);
     this.selectElement = this.specialDiv.find("select[name='day']");
-    this.daySpecialData = null;
     this.handler = this.handler.bind(this);
   }
 
@@ -55,5 +54,5 @@ class DaySpecialController {
   }
 }
 
-let obj = new DaySpecialController();
+let obj = new DaySpecialController('specials');
 obj.init();
