@@ -1,6 +1,7 @@
 class BlogLoader {
-  constructor(container) {
-    this.targetEle = $(`#${container}`);
+  constructor(dataAttr) {
+    this.rootContainer = $(`div[data-container='${dataAttr}'`);
+    this.targetHeadings = this.rootContainer.find('h3');
   }
 
   init() {
@@ -8,18 +9,18 @@ class BlogLoader {
     this.bindEvents();
   }
 
-  generateDiv(index, ele) {      
+  generateDiv(index, ele) {
     let targetDiv = $('<div />').text('Show Complete Blog');
     targetDiv.data('ref', $(ele));
     $(ele).prepend(targetDiv);
   }
 
   setup() {
-    this.targetEle.each(this.generateDiv);
+    this.targetHeadings.each(this.generateDiv);
   }
 
   bindEvents() {
-    this.targetEle.find('div').click(this.hander);
+    this.rootContainer.find('div').click(this.hander);
   }
 
   hander(e) {
@@ -34,5 +35,5 @@ class BlogLoader {
   }
 }
 
-let blogLoader = new BlogLoader('blog ul li h3');
+let blogLoader = new BlogLoader('blog');
 blogLoader.init();
