@@ -21,7 +21,7 @@ class SlideShow {
     $('#slideshow li:gt(0)').hide();
   }
   
-  insertStatsNode() {
+  insertStatsNodeInDOM() {
     // Create Stats Section
     this.targetElem.after(`
       <h1>Slide Show Details</h1>
@@ -33,7 +33,7 @@ class SlideShow {
   setup() {
     this.moveTargetToTop();
     this.hideAllExceptFirst();
-    this.insertStatsNode();
+    this.insertStatsNodeInDOM();
   }
 
   changeImageOnSlideDuration() {
