@@ -45,6 +45,7 @@ class SlideShow {
   }
 }
 
-
-let slideshow = new SlideShow('slideshow', 3000);
-slideshow.init();
+$(function() {
+  let slideshow = new SlideShow('slideshow', 3000);
+  slideshow.init();
+}());
