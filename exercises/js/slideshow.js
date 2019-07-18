@@ -10,20 +10,30 @@ class SlideShow {
     this.setup();
     this.changeImageOnSlideDuration();
   }
-
-  setup() {
+  
+  moveTargetToTop() {
     // Move to Top
     $('body').prepend(this.targetElem);
-
+  }
+  
+  hideAllExceptFirst() {
     // Hide All except first
     $('#slideshow li:gt(0)').hide();
-    
+  }
+  
+  insertStatsNode() {
     // Create Stats Section
     this.targetElem.after(`
       <h1>Slide Show Details</h1>
       <h2> Total Images :- ${this.itemCount} </h2>
       <h2> Current Image :- <span id='currentImageNumber'>1</span> </h2>
     `);
+  }
+
+  setup() {
+    this.moveTargetToTop();
+    this.hideAllExceptFirst();
+    this.insertStatsNode();
   }
 
   changeImageOnSlideDuration() {
